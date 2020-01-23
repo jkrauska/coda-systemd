@@ -1,0 +1,17 @@
+[Unit]
+Description=Coda Daemon Service
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+EnvironmentFile=-/etc/default/coda_daemon
+Type=simple
+Restart=always
+RestartSec=5 # Pause 5s before restarting
+User=MYUSERNAME
+ExecStart=/usr/local/bin/coda daemon $DAEMON_OPTIONS $DAEMON_PEERS
+ExecStop=/usr/bin/pkill -f 'coda daemon'
+
+[Install]
+WantedBy=multi-user.target

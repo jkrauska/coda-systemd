@@ -1,0 +1,4 @@
+# coda daemon config options for /etc/default/coda-daemon
+DAEMON_OPTIONS="-discovery-port 9999"
+# Peers will change with each release
+DAEMON_PEERS="-peer /ip4/34.82.159.8/tcp/10002/ipfs/12D3KooWDjSiDwnatZyNw7Mf9G1iWL29YdAJWQF35vkRwcbu7fyL"
