@@ -5,10 +5,10 @@ StartLimitIntervalSec=60
 StartLimitBurst=3
 
 [Service]
-EnvironmentFile=-/etc/default/coda_daemon
+EnvironmentFile=-/etc/default/coda-config
 Type=simple
 Restart=always
-RestartSec=5 # Pause 5s before restarting
+RestartSec=5
 User=MYUSERNAME
 ExecStart=/usr/local/bin/coda daemon $DAEMON_OPTIONS $DAEMON_PEERS
 ExecStop=/usr/bin/pkill -f 'coda daemon'

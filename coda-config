@@ -1,4 +1,15 @@
 # coda daemon config options for /etc/default/coda-daemon
+
+# Standard daemon options
 DAEMON_OPTIONS="-discovery-port 9999"
+
 # Peers will change with each release
 DAEMON_PEERS="-peer /ip4/34.82.159.8/tcp/10002/ipfs/12D3KooWDjSiDwnatZyNw7Mf9G1iWL29YdAJWQF35vkRwcbu7fyL"
+
+SNARK_COORDINATOR='127.0.0.1:8301'
+
+# WARNING: This is insecure.
+#CODA_PRIVKEY_PASS=""
+
+# Theads per process
+OMP_NUM_THREADS=6

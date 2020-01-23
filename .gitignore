@@ -1,1 +1,2 @@
 coda-daemon.service
+coda-snark-worker@.service

@@ -1,0 +1,7 @@
+# coda daemon config options for /etc/default/coda-daemon
+
+# overrides for snark worker processes
+# Theads per process
+OMP_NUM_THREADS=1
+
+

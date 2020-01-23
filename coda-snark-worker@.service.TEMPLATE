@@ -1,0 +1,22 @@
+# Templated unit file
+# To enable eg. 9 workers use this
+# sudo systemctl enable coda-snark-worker\@{1..9}.service
+[Unit]
+Description=Coda Snark Worker Service %i
+StartLimitIntervalSec=60
+StartLimitBurst=3
+Requires=coda-daemon.service
+After=coda-daemon.service
+
+[Service]
+EnvironmentFile=-/etc/default/coda-config
+EnvironmentFile=-/etc/default/coda-config-snark-worker
+Type=simple
+Restart=always
+RestartSec=10
+User=MYUSERNAME
+Nice=10
+ExecStart=/usr/local/bin/coda internal snark-worker -daemon-address $SNARK_COORDINATOR
+
+[Install]
+WantedBy=multi-user.target

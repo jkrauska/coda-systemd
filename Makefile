@@ -5,9 +5,10 @@ USERNAME := $(shell whoami)
 .PHONY: clean install
 
 user:
-	$(info Setting daemon User to $(USERNAME))
-	@sed 's/MYUSERNAME/$(USERNAME)/' coda-daemon.service.TEMPLATE > coda-daemon.service ; \
-	diff -U1 coda-daemon.service.TEMPLATE coda-daemon.service ; [ $$? -eq 1 ]
+	@echo "Setting daemon User to ${USERNAME}"
+	sed 's/MYUSERNAME/$(USERNAME)/' coda-daemon.service.TEMPLATE > coda-daemon.service ; \
+	sed 's/MYUSERNAME/$(USERNAME)/' coda-snark-worker@.service.TEMPLATE > coda-snark-worker@.service
+
 
 install:
 	@echo "Copying systemd service file and default config" ; \
@@ -17,5 +18,10 @@ install:
 	fi ;\
 	mkdir -p /lib/systemd/system ;\
 	cp coda-daemon.service /lib/systemd/system/. ;\
+	cp coda-snark-worker@.service /lib/systemd/system/. ;\
 	mkdir -p /etc/default ;\
-	cp coda-daemon /etc/default/.
+	cp coda-config /etc/default/. ;\
+	cp coda-config-snark-worker /etc/default/. 
+
+clean:
+	@rm coda-daemon.service coda-snark-worker@.service
